@@ -118,7 +118,7 @@ function isValidContactEmail(value) {
 }
 
 function isValidAssetType(value) {
-    return value === 'question' || value === 'solution';
+    return value === 'question' || value === 'solution' || value === 'note' || value === 'lab' || value === 'material';
 }
 
 function sanitizeContextValue(value) {
