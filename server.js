@@ -230,7 +230,10 @@ async function handleCloudinarySignUpload(request, response) {
         const courseCode = normalizeText(body.courseCode).replace(/\s+/g, ' ').toUpperCase();
         const assetLabel = normalizeText(body.assetLabel);
         
-        const resourceType = 'image';
+        const requestedResourceType = normalizeText(body.resourceType).toLowerCase();
+        const resourceType = ['image', 'video', 'raw', 'auto'].includes(requestedResourceType)
+            ? requestedResourceType
+            : 'auto';
 
         if (!isValidAssetType(assetType)) {
             sendJson(response, 400, { error: 'assetType must be "question" or "solution".' }, requestOrigin);
